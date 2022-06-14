@@ -6,6 +6,7 @@ import Header from "./components/Header/Header"
 import Instructions from "./components/Instructions/Instructions"
 import Chip from "./components/Chip/Chip"
 import NutritionalLabel from "./components/NutritionalLabel/NutritionalLabel"
+import { useState } from "react"
 
 // don't move this!
 export const appInfo = {
@@ -81,20 +82,18 @@ export function App() {
         <div className="MenuDisplay display">
           <div className="MenuItemButtons menu-items">
             <h2 className="title">Menu Items</h2>
-            {currentMenuItems.map((currentMenuItems, i) => (
+            {currentMenuItems.map((menuItem, i) => (
           <Chip
            key = {i}
-           label = {currentMenuItems.item_name}
-           isActive={currentMenuItems == selectedMenuItem ? true : false}
-           onClick={() => setSelectedMenuItem(currentMenuItems)}
+           label = {menuItem.item_name}
+           isActive={menuItem == selectedMenuItem ? true : false}
+           onClick={() => setSelectedMenuItem(menuItem)}
            />
             ))}
           </div>
           {/* NUTRITION FACTS */}
           <div className="NutritionFacts nutrition-facts">{/* YOUR CODE HERE */}
-          {selectedMenuItem ? (<NutritionalLabel selectedMenuItem={selectedMenuItem} /> 
-          )
-          : null}
+          {selectedMenuItem ? <NutritionalLabel selectedMenuItem={selectedMenuItem} /> : null}
           </div>
         </div>
 
